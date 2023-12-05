@@ -12,7 +12,8 @@ public class UserDaoImp implements UserDao {
 
    @Autowired
    private SessionFactory sessionFactory;
-   private String hqlQuery = "from User user where user.car.model = :model and user.car.series = :series";
+
+   private String hqlQuery = "from User user where user.car.model = :model and user.car.series = :series";//todo: ..а вот HQL_query's принято в отличии от константных SQL-запросов писать в методах
 
    @Override
    public void add(User user) {
@@ -21,8 +22,8 @@ public class UserDaoImp implements UserDao {
 
    @Override
    @SuppressWarnings("unchecked")
-   public List<User> listUsers() {
-      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");
+   public List<User> listUsers() {//todo: забыли try_with_resources на методах..
+      TypedQuery<User> query = sessionFactory.getCurrentSession().createQuery("from User");//todo: codeStyle -> listUsersQuery..
       return query.getResultList();
    }
 

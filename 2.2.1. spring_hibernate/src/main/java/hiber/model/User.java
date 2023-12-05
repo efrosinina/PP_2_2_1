@@ -22,7 +22,7 @@ public class User {
    private String email;
 
    @OneToOne(mappedBy = "user")
-   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//todo: ..вынести в import - org.hibernate.annotations.CascadeType..
    private Car car;
 
    public User() {}
