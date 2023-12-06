@@ -8,12 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImp implements UserService {
 
    @Autowired
    private UserDao userDao;
 
-   @Transactional//todo: @Transaction - над классом - как обобщение, где необходимо readOnly = true - ставим над методом
    @Override
    public void add(User user) {
       userDao.add(user);
@@ -25,7 +25,6 @@ public class UserServiceImp implements UserService {
       return userDao.listUsers();
    }
 
-   @Transactional
    @Override
    public User getUserByCar(String model, int series) {
       return userDao.getUserByCar(model, series);

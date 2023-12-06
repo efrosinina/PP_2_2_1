@@ -3,6 +3,7 @@ package hiber.model;
 import org.hibernate.annotations.Cascade;
 import javax.persistence.*;
 import java.util.Objects;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +23,7 @@ public class User {
    private String email;
 
    @OneToOne(mappedBy = "user")
-   @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//todo: ..вынести в import - org.hibernate.annotations.CascadeType..
+   @Cascade(CascadeType.SAVE_UPDATE)
    private Car car;
 
    public User() {}
