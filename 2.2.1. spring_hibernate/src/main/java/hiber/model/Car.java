@@ -7,6 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "cars")
 public class Car implements Serializable {
+
     @Id
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

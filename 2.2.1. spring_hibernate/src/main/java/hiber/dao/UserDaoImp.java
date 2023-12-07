@@ -16,13 +16,13 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void add(User user) {
-      try(Session session = sessionFactory.openSession()) {
+      try(Session session = sessionFactory.openSession()) {//todo: Session session - используется в методе? (во всех методах)
          sessionFactory.getCurrentSession().save(user);
       }
    }
 
    @Override
-   @SuppressWarnings("unchecked")
+   @SuppressWarnings("unchecked")//todo: лишнее
    public List<User> listUsers() {
       try(Session session = sessionFactory.openSession()) {
          return sessionFactory.getCurrentSession().createQuery("from User").getResultList();

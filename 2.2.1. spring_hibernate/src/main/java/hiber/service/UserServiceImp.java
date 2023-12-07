@@ -23,10 +23,10 @@ public class UserServiceImp implements UserService {
    @Override
    public List<User> listUsers() {
       return userDao.listUsers();
-   }
+   }//todo: getListUsers()  ?? codeStyle
 
    @Override
    public User getUserByCar(String model, int series) {
       return userDao.getUserByCar(model, series);
-   }
+   }//todo: избавляемся от примитивов
 }
