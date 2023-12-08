@@ -21,12 +21,12 @@ public class UserServiceImp implements UserService {
 
    @Transactional(readOnly = true)
    @Override
-   public List<User> listUsers() {
+   public List<User> getListUsers() {
       return userDao.listUsers();
-   }//todo: getListUsers()  ?? codeStyle
+   }
 
    @Override
-   public User getUserByCar(String model, int series) {
+   public User getUserByCar(String model, Integer series) {
       return userDao.getUserByCar(model, series);
-   }//todo: избавляемся от примитивов
+   }
 }

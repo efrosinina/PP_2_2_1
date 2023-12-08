@@ -63,7 +63,7 @@ public class Car implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return series == car.series && Objects.equals(user, car.user) && Objects.equals(model, car.model);
+        return Objects.equals(user, car.user) && Objects.equals(model, car.model) && Objects.equals(series, car.series);
     }
 
     @Override
