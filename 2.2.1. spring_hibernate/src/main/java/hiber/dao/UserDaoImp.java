@@ -16,8 +16,18 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void add(User user) {
-      try(Session session = sessionFactory.openSession()) {
-         session.getSessionFactory().getCurrentSession().save(user);
+      try (Session session = sessionFactory.openSession()) {
+         TypedQuery<User> createUserQuery = session.createQuery("FROM User WHERE firstName = :firstName" +
+                 " and lastName = :lastName and email = :email");
+         createUserQuery.setParameter("firstName", user.getFirstName());
+         createUserQuery.setParameter("lastName", user.getLastName());
+         createUserQuery.setParameter("email", user.getEmail());
+         List<User> existingUsers = createUserQuery.getResultList();
+         if (existingUsers.isEmpty()) {
+            session.getSessionFactory().getCurrentSession().save(user);
+         } else {
+            System.out.println("User уже существует");
+         }
       }
    }
 
@@ -33,7 +43,9 @@ public class UserDaoImp implements UserDao {
       try(Session session = sessionFactory.openSession()) {
          TypedQuery<User> getUserQuery = session.createQuery("from User user where" +
                  " user.car.model = :model and user.car.series = :series", User.class);
-         return getUserQuery.setParameter("model", model).setParameter("series", series).setMaxResults(1).getSingleResult();
+         getUserQuery.setParameter("model", model);
+         getUserQuery.setParameter("series", series);
+         return getUserQuery.setMaxResults(1).getSingleResult();
       }
    }
 }
