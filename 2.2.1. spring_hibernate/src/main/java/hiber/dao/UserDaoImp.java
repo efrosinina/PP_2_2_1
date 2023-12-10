@@ -25,8 +25,6 @@ public class UserDaoImp implements UserDao {
          List<User> existingUsers = createUserQuery.getResultList();
          if (existingUsers.isEmpty()) {
             session.getSessionFactory().getCurrentSession().save(user);
-         } else {
-            System.out.println("User уже существует");
          }
       }
    }
